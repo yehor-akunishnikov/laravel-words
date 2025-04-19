@@ -1,0 +1,2 @@
+- Run server **sail up -d**
+- Run ssr server **sail php artisan inertia:start-ssr**
