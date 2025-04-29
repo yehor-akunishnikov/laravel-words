@@ -1,2 +1,4 @@
+- Run migrations **sail php artisan migrate**
+- Run migrations fresh (clean db and run all) **sail php artisan migrate:refresh**
 - Run server **sail up -d**
 - Run ssr server **sail php artisan inertia:start-ssr**
