@@ -15,10 +15,10 @@ defineProps<{
             <nav v-if="canLogin">
                 <Link
                     v-if="$page.props.auth.user"
-                    :href="route('home')"
+                    :href="route('hub.index')"
                     class="text-black"
                 >
-                    Words
+                    Hub
                 </Link>
                 <Link
                     v-if="$page.props.auth.user"
