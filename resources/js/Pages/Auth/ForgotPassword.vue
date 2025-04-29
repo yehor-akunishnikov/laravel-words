@@ -1,10 +1,9 @@
-<script setup lang="ts">
-import PrimaryButton from '@/Components/Btn/PrimaryButton.vue';
-import InputError from '@/Components/Forms/InputError.vue';
-import InputLabel from '@/Components/Forms/InputLabel.vue';
-import TextInput from '@/Components/Forms/TextInput.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+<script lang="ts" setup>
+import {Head, useForm} from "@inertiajs/vue3";
+
+import InputError from "@/Components/Forms/InputError.vue";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import Button from "@/Components/Btn/Button.vue";
 
 defineProps<{
     status?: string;
@@ -21,7 +20,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Forgot Password" />
+        <Head title="Forgot Password"/>
 
         <div class="mb-4 text-sm text-gray-600">
             Forgot your password? No problem. Just let us know your email
@@ -35,28 +34,29 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <label for="email">Email</label>
 
-                <TextInput
+                <input
                     id="email"
-                    type="email"
-                    class="mt-1 block w-full"
                     v-model="form.email"
-                    required
-                    autofocus
                     autocomplete="username"
+                    autofocus
+                    class="mt-1 block w-full"
+                    required
+                    type="email"
                 />
 
-                <InputError class="mt-2" :message="form.errors.email" />
+                <InputError :message="form.errors.email" class="mt-2"/>
             </div>
 
             <div class="mt-4 flex items-center justify-end">
-                <PrimaryButton
+                <Button
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
+                    variant="primary"
                 >
                     Email Password Reset Link
-                </PrimaryButton>
+                </Button>
             </div>
         </form>
     </GuestLayout>

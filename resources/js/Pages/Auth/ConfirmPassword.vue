@@ -1,10 +1,9 @@
-<script setup lang="ts">
-import PrimaryButton from '@/Components/Btn/PrimaryButton.vue';
-import InputError from '@/Components/Forms/InputError.vue';
-import InputLabel from '@/Components/Forms/InputLabel.vue';
-import TextInput from '@/Components/Forms/TextInput.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import { Head, useForm } from '@inertiajs/vue3';
+<script lang="ts" setup>
+import {Head, useForm} from "@inertiajs/vue3";
+
+import InputError from "@/Components/Forms/InputError.vue";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import Button from "@/Components/Btn/Button.vue";
 
 const form = useForm({
     password: '',
@@ -21,7 +20,7 @@ const submit = () => {
 
 <template>
     <GuestLayout>
-        <Head title="Confirm Password" />
+        <Head title="Confirm Password"/>
 
         <div class="mb-4 text-sm text-gray-600">
             This is a secure area of the application. Please confirm your
@@ -30,27 +29,29 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="password" value="Password" />
-                <TextInput
+                <label for="password">Password</label>
+
+                <input
                     id="password"
-                    type="password"
-                    class="mt-1 block w-full"
                     v-model="form.password"
-                    required
                     autocomplete="current-password"
                     autofocus
+                    class="mt-1 block w-full"
+                    required
+                    type="password"
                 />
-                <InputError class="mt-2" :message="form.errors.password" />
+                <InputError :message="form.errors.password" class="mt-2"/>
             </div>
 
             <div class="mt-4 flex justify-end">
-                <PrimaryButton
-                    class="ms-4"
+                <Button
                     :class="{ 'opacity-25': form.processing }"
                     :disabled="form.processing"
+                    class="ms-4"
+                    variant="primary"
                 >
                     Confirm
-                </PrimaryButton>
+                </Button>
             </div>
         </form>
     </GuestLayout>

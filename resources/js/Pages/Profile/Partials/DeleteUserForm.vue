@@ -1,12 +1,11 @@
-<script setup lang="ts">
-import DangerButton from '@/Components/Btn/DangerButton.vue';
-import SecondaryButton from '@/Components/Btn/SecondaryButton.vue';
-import Modal from '@/Components/Common/Modal.vue';
-import InputError from '@/Components/Forms/InputError.vue';
-import InputLabel from '@/Components/Forms/InputLabel.vue';
-import TextInput from '@/Components/Forms/TextInput.vue';
-import { useForm } from '@inertiajs/vue3';
-import { nextTick, ref } from 'vue';
+<script lang="ts" setup>
+import {nextTick, ref} from "vue";
+
+import {useForm} from "@inertiajs/vue3";
+
+import InputError from "@/Components/Forms/InputError.vue";
+import Modal from "@/Components/Common/Modal.vue";
+import Button from "@/Components/Btn/Button.vue";
 
 const confirmingUserDeletion = ref(false);
 const passwordInput = ref<HTMLInputElement | null>(null);
@@ -52,7 +51,7 @@ const closeModal = () => {
             </p>
         </header>
 
-        <DangerButton @click="confirmUserDeletion">Delete Account</DangerButton>
+        <Button variant="danger" @click="confirmUserDeletion">Delete Account</Button>
 
         <Modal :show="confirmingUserDeletion" @close="closeModal">
             <div class="p-6">
@@ -67,38 +66,35 @@ const closeModal = () => {
                 </p>
 
                 <div class="mt-6">
-                    <InputLabel
-                        for="password"
-                        value="Password"
-                        class="sr-only"
-                    />
+                    <label class="sr-only" for="password">Password</label>
 
-                    <TextInput
+                    <input
                         id="password"
                         ref="passwordInput"
                         v-model="form.password"
-                        type="password"
                         class="mt-1 block w-3/4"
                         placeholder="Password"
+                        type="password"
                         @keyup.enter="deleteUser"
                     />
 
-                    <InputError :message="form.errors.password" class="mt-2" />
+                    <InputError :message="form.errors.password" class="mt-2"/>
                 </div>
 
                 <div class="mt-6 flex justify-end">
-                    <SecondaryButton @click="closeModal">
+                    <Button variant="secondary" @click="closeModal">
                         Cancel
-                    </SecondaryButton>
+                    </Button>
 
-                    <DangerButton
-                        class="ms-3"
+                    <Button
                         :class="{ 'opacity-25': form.processing }"
                         :disabled="form.processing"
+                        class="ms-3"
+                        variant="danger"
                         @click="deleteUser"
                     >
                         Delete Account
-                    </DangerButton>
+                    </Button>
                 </div>
             </div>
         </Modal>
